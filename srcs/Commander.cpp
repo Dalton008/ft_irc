@@ -8,11 +8,11 @@ Commander::Commander()
 	commands.push_back(new CmdPass());
 }
 
-void Commander::parse(Client *client, string msg)
+void Commander::parse(/*Client *client, */string msg)
 {
 	// cout << msg << endl; //del
 	vector<string> arg = splitMsg(msg);
-	_client = client;
+	// _client = client;
 	// for (vector<string>::const_iterator i = arg.begin(); i != arg.end(); ++i)
 	// {
 	// 	cout << *i << " ";
@@ -24,7 +24,7 @@ void Commander::parse(Client *client, string msg)
 			cout <<  "'" + (*i)->getName() + "'" << " " << "'" + arg[0] + "'" << endl;
 			if (arg[0] == (*i)->getName())
 			{
-				(*i)->setClient(client);
+				// (*i)->setClient(client);
 				(*i)->cmdRun();
 			}
 		}

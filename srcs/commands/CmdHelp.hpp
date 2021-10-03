@@ -1,8 +1,11 @@
 #pragma once
 
-#include "includes/Command.hpp"
+#include "../../includes/Command.hpp"
 
 #include <vector>
+#include <iostream>
+
+class Command;
 
 class CmdHelp : public Command
 {

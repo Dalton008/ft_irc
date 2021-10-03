@@ -16,8 +16,8 @@ void CmdHelp::cmdRun()
 	for (vector<Command*>::const_iterator i = cmds.begin(); i != cmds.end(); ++i)
 	{
 		message = "Name cmd: " + (*i)->getName() + ", decription cmd: " + (*i)->getDescription() + "\n";
-		// cout << message;
-		this->_client->sendMessageToClient(message);
+		cout << message;
+		// this->_client->sendMessageToClient(message);
 		// cout << "Name cmd: " << (*i)->getName() << ", decription cmd: " << (*i)->getDescription() << endl;
 	}
 }

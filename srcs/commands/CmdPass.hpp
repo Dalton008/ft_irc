@@ -1,6 +1,8 @@
 #pragma once
 
-#include "includes/Command.hpp"
+#include "../../includes/Command.hpp"
+
+class Command;
 
 class CmdPass : public Command
 {

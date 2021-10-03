@@ -22,6 +22,7 @@
 # define LOCALHOST "127.0.0.1"
 
 class Client;
+class Commander;
 
 class Server{
 

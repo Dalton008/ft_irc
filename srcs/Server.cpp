@@ -130,7 +130,7 @@ void Server::start(void){
 					(void)byteRecv;
 					
 					// cout << (*itClient)->getMessage() << endl;
-					_Commander->parse((*itClient), (*itClient)->getMessage());
+					_Commander->parse(/*(*itClient), */(*itClient)->getMessage());
 				}
 			}
 		}

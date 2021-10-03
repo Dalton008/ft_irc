@@ -6,7 +6,7 @@ Command::Command() {}
 
 Command::~Command() {}
 
-void Command::setClient(Client *client)
-{
-	this->_client = client;
-}
+// void Command::setClient(Client *client)
+// {
+// 	this->_client = client;
+// }

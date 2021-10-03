@@ -7,9 +7,9 @@
 class Announcement{
 
 private:
-		Announcement();
+		Announcement() {};
 public:
-		~Announcement();
+		~Announcement() {};
 
 		static void Fatal(std::string str, int exitCode = 1);
 };

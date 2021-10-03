@@ -8,7 +8,7 @@ CXX			= clang++
 
 RM			= rm -f
 
-CXXFLAGS	= -Wall -Wextra -Werror -I. -Wshadow -Wno-shadow -std=c++98 -g3
+CXXFLAGS	= -Wall -Wextra -Werror  -std=c++98 -g3
 
 INCLUDES	= $(shell find . -name "*.hpp")
 
