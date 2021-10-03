@@ -1,4 +1,5 @@
-#pragma once
+#ifndef CLIENT_HPP
+#define CLIENT_HPP
 
 # include "Server.hpp"
 
@@ -52,3 +53,5 @@ public:
 		void		appendMessage(std::string message);
 		void		sendMessageToClient(std::string message);
 };
+
+#endif

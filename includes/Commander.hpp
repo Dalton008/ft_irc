@@ -1,30 +1,25 @@
-#pragma once
+#ifndef COMMANDER_HPP
+#define COMMANDER_HPP
 
-// class Command;
-// class Client;
-
-// #include <vector>
-// #include <string>
-// #include <iostream>
 #include <sstream>
 #include "Command.hpp"
-#include "Client.hpp"
 
-#include "../srcs/commands/CmdHelp.hpp"
-#include "../srcs/commands/CmdPass.hpp"
-
+class Command;
+class Client;
 
 class Commander
 {
 	private:
 		std::vector<Command*>	commands;
-		// Client					*_client;
+		Client					*_client;
 
 	public:
 		Commander();
 		~Commander();
 
-		void parse(/*Client *client,*/ std::string msg);
+		void parse(Client *client, std::string msg);
 		std::vector<std::string> splitMsg(std::string msg);
 		void addCommands();
 };
+
+#endif

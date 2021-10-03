@@ -1,4 +1,5 @@
-#pragma once
+#ifndef SERVER_HPP
+#define SERVER_HPP
 
 # include <iostream>
 # include <sstream>
@@ -50,3 +51,5 @@ public:
 		int		createClient(void);
 		int		recvMessage(Client *client);
 };
+
+#endif

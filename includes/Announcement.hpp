@@ -1,3 +1,6 @@
+#ifndef ANNOUNCEMENT_HPP
+#define ANNOUNCEMENT_HPP
+
 #include <iostream>
 
 #include <cerrno>
@@ -13,3 +16,5 @@ public:
 
 		static void Fatal(std::string str, int exitCode = 1);
 };
+
+#endif

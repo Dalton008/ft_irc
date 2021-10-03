@@ -1,18 +1,18 @@
-#pragma once
+#ifndef COMMAND_HPP
+#define COMMAND_HPP
 
 #include <string>
-// class Command;
 
-// #include "Client.hpp"
+#include "Client.hpp"
 
-// class Client;
+class Client;
 
 class Command
 {
 	protected:
 		std::string		_cmdName;
 		std::string		_cmdDescription;
-		// Client			*_client;
+		Client			*_client;
 	
 	public:
 		Command();
@@ -21,6 +21,8 @@ class Command
 
 		std::string getName() {return _cmdName;}
 		std::string getDescription() {return _cmdDescription;}
-		// void		setClient(Client *client);
+		void		setClient(Client *client);
 		virtual void cmdRun() = 0;
 };
+
+#endif
