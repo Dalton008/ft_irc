@@ -2,6 +2,7 @@
 #include "CmdHelp.hpp"
 #include "CmdPass.hpp"
 #include "CmdNick.hpp"
+#include "CmdUser.hpp"
 
 using namespace std;
 
@@ -11,6 +12,7 @@ Commander::Commander(Server *server)
 	commands.push_back(new CmdHelp(commands));
 	commands.push_back(new CmdPass());
 	commands.push_back(new CmdNick());
+	commands.push_back(new CmdUser());
 }
 
 Commander::~Commander()

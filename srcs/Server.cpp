@@ -81,7 +81,7 @@ void Server::start(void){
 	pollfd	newPollfd = {_sock, POLLIN, 0};
 	pollfd	ptrPollfd;
 
-	_Commander = new Commander();
+	_Commander = new Commander(this);
 	if (fcntl(_sock, F_SETFL, O_NONBLOCK) == -1)
 	 	Announcement::Fatal("Error: poll: fcntl");
 	
@@ -116,7 +116,7 @@ void Server::start(void){
 			{
 				if (ptrPollfd.fd == _sock)
 				{
-					string str("PASS NICK USER\n\r");
+					string str("Entered:\nPASS <password>\nNICK <nickname>\nUSER <username> <flags> <unused> <realname>\n\r");
 						if (send(createClient(), str.c_str(), str.length(), 0) == -1)
 							Announcement::Fatal("Error: send");
 					break ;
@@ -202,4 +202,11 @@ int		Server::createClient(void){
 
 	cout << "New client " << newClient->getNick() << "@" << newClient->getHost() << ":" << newClient->getPort() << endl;
 	return client_d;
+}
+
+bool	Server::checkClientPass(string str)
+{
+	if (str != _pass)
+		return 0;
+	return 1;
 }

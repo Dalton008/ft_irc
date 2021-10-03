@@ -5,9 +5,8 @@ using namespace std;
 Client::Client(int sockFd, int port, Server *serv, char *host) : _sockFd(sockFd), _port(port), _host(host){
 	_nickname = "unknown";
 	// _channel = nullptr;
-	_didEnter = false;
-	_isIdentified = false;
 	_enterPassword = false;
+	_registered = false;
 	_id = serv->getId(0) + serv->getId(1) + serv->getId(2);
 }
 

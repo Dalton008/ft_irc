@@ -5,6 +5,7 @@ using namespace std;
 CmdPass::CmdPass()
 {
 	_cmdName = "PASS";
+	_syntax = "PASS <password>";
 	_cmdDescription = "PASS <password>. Sets the connection password. This command must be used before registering a username.";
 }
 
@@ -23,11 +24,6 @@ void CmdPass::cmdRun()
 		_client->sendMessageToClient("Correct password!\n");
 	}
 }
-
-// const char* CmdPass::NeedMoreParamsException::what() const throw()
-// {
-// 	return "Need more params. PASS <password>\n";
-// }
 
 const char *CmdPass::IncorrectPasswordException::what() const throw()
 {
