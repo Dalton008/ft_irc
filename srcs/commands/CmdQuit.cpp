@@ -23,7 +23,6 @@ void CmdQuit::cmdRun()
 			_client->sendMessageToClient(*i + " ");
 			i++;
 		}
-		// _client->sendMessageToClient("\n");
 	}
 	_server->deleteClient(_client->getId());
 }
