@@ -18,6 +18,9 @@ all : $(NAME)
 ${NAME} : $(OBJ)
 	clang++ $(FLAGS) $(OBJ) -o $(NAME)
 
+run : all
+	./irc 6667 123
+
 clean :
 	$(RM) $(OBJ)
 

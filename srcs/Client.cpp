@@ -7,6 +7,7 @@ Client::Client(int sockFd, int port, Server *serv, char *host) : _sockFd(sockFd)
 	// _channel = nullptr;
 	_didEnter = false;
 	_isIdentified = false;
+	_enterPassword = false;
 	_id = serv->getId(0) + serv->getId(1) + serv->getId(2);
 }
 

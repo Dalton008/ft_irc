@@ -50,6 +50,7 @@ public:
 		void	deleteClient(std::string id);
 		int		createClient(void);
 		int		recvMessage(Client *client);
+		bool	checkClientPass(std::string str);
 };
 
 #endif

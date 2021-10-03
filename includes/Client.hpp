@@ -15,8 +15,10 @@ private:
 		std::string				_nickname;
 		std::string				_firstname;
 		std::string				_message;
-		bool					_didEnter;
+		bool					_didEnter; // ?
 		bool					_isIdentified;
+		
+		bool					_enterPassword;
 
 		// std::vector<Channel *>	_channels;
 		// Channel*			_channel;
@@ -33,7 +35,8 @@ public:
 		int			getPort(void) {return _port;}
 		std::string getMessage(void) {return _message;}
 		std::string getName(void) {return _firstname;}
-		bool		getDidEnter(void) {return _didEnter;}
+		bool		getDidEnter(void) {return _didEnter;} //?
+		bool		getEnterPassword(void) {return _enterPassword;}
 
 		void		setSockFd(int sock) {_sockFd = sock;}
 		void		setPort(int port) {_port = port;}
@@ -41,8 +44,10 @@ public:
 		void		setHost(std::string host) {_host = host;}
 		void		setNick(std::string nick) {_nickname = nick;}
 		void		setName(std::string name) {_firstname = name;}
-		void		setDidEnter(bool i) {_didEnter = i;}
+		void		setDidEnter(bool i) {_didEnter = i;} // ?
 		void		setIsIdentified(bool i) {_isIdentified = i;}
+		
+		void		setEnterPassword(bool i) {_enterPassword = i;}
 
 
 

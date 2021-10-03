@@ -9,6 +9,11 @@ class CmdPass : public Command
 		CmdPass();
 		~CmdPass();
 		void cmdRun();
+
+		class  IncorrectPasswordException : public std::exception
+		{
+			const char* what() const throw();	
+		};
 };
 
 #endif
