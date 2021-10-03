@@ -23,6 +23,6 @@ void CmdUser::cmdRun()
         _client->setNick(_args[1]);
         _client->setRealname(_args[4]);
         _client->setRegistered(1);
-        _client->sendMessageToClient("Client is registered.\n");
+        _client->sendMessageToClient("User is registered.\n");
     }
 }
