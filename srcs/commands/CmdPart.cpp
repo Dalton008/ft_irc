@@ -32,8 +32,8 @@ void CmdPart::cmdRun()
             "\n"
         );
         _client->sendMessageToClient(
-            "You have left the channel: " + 
-            channel->getChannelName() + "\n"
+            "You have left the channel: \"" + 
+            channel->getChannelName() + "\"\n"
         );
     }
 }

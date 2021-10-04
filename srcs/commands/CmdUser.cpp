@@ -18,8 +18,8 @@ void CmdUser::cmdRun()
         throw CmdUser::NoPasswordEntered();
     else if (_args.size() < 5)
         throw CmdUser::InvalidNumOfArgs();
-    else if (_server->checkExistClient(_args[1]))
-        throw CmdUser::ClientWithThisNickExists();
+    else if (_server->checkExistClient(_args[1]) && _server->getClient(_args[1])->getRegistered())
+        throw CmdUser::ClientWithThisNickRegistered();
     else
     {
         _client->setNick(_args[1]);

@@ -47,3 +47,8 @@ const char* Command::ClientWithThisNickExists::what() const throw()
 {
     return "A user with this nickname exists!\n";
 }
+
+const char* Command::ClientWithThisNickRegistered::what() const throw()
+{
+    return "A user with this nickname registered!\n";
+}
