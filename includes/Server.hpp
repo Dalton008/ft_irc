@@ -54,8 +54,10 @@ public:
 		int		createClient(void);
 		int		recvMessage(Client *client);
 		bool	checkClientPass(std::string str);
-		void	createChannel(std::string name);
+		void	createChannel(std::string channelName);
+		bool	checkExistChannel(std::string channelName);
 		Client	*getClient(std::string clientName);
+		Channel	*getChannel(std::string channelName);
 };
 
 #endif

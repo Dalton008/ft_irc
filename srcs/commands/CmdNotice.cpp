@@ -4,7 +4,7 @@ CmdNotice::CmdNotice()
 {
     _cmdName = "NOTICE";
     _syntax = "NOTICE <nickname> <message>";
-    _cmdDescription = "Sends a message";
+    _cmdDescription = "Sends a message.";
 }
 
 CmdNotice::~CmdNotice()

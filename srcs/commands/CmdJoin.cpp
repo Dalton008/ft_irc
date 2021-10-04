@@ -12,14 +12,21 @@ CmdJoin::~CmdJoin()
 
 void CmdJoin::cmdRun()
 {
-    // if (!_client->getEnterPassword())
-    //     throw CmdJoin::NoPasswordEntered();
-    // else if (!_client->getRegistered())
-    //     throw CmdJoin::NoRegistered();
-    // else if (_args.size() != 2)
-    //     throw CmdJoin::NeedMoreParamsNotice();
-    // else
-    // {
-
-    // }
+    if (!_client->getEnterPassword())
+        throw CmdJoin::NoPasswordEntered();
+    else if (!_client->getRegistered())
+        throw CmdJoin::NoRegistered();
+    else if (_args.size() != 2)
+        throw CmdJoin::InvalidNumOfArgs();
+    else
+    {
+        if (!_server->checkExistChannel(_args[1]))
+            _server->createChannel(_args[1]);
+        Channel *channel = _server->getChannel(_args[1]);
+        channel->setClient(_client);
+        channel->sendMessageToChannel(
+            "User " + _client->getNick() +
+            " join to " +
+            channel->getChannleName() + "\n");
+    }
 }

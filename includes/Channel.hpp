@@ -13,7 +13,8 @@ class Channel
 		Channel(std::string name);
 		~Channel();
 		std::string	getChannleName() {return _channelName;}
-
+		void		setClient(Client *client);
+		void		sendMessageToChannel(std::string message);
 };
 
 #endif

@@ -225,3 +225,23 @@ Client	*Server::getClient(string clientName)
 	}
 	return nullptr;
 }
+
+bool	Server::checkExistChannel(string channelName)
+{
+	for (vector<Channel*>::const_iterator i = _channels.begin(); i != _channels.end(); ++i)
+	{
+		if ((*i)->getChannleName() == channelName)
+			return true;
+	}
+	return false;
+}
+
+Channel	*Server::getChannel(string channelName)
+{
+	for (vector<Channel*>::const_iterator i = _channels.begin(); i != _channels.end(); ++i)
+	{
+		if ((*i)->getChannleName() == channelName)
+			return (*i);
+	}
+	return nullptr;
+}
