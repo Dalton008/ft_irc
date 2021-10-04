@@ -33,6 +33,7 @@ void CmdNotice::cmdRun()
         msgToClient += "\n";
         _client->sendMessageToClient("Message sending.\n");
         toClient->sendMessageToClient(msgToClient);
+        
     }
 }
 
