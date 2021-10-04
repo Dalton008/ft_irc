@@ -13,10 +13,6 @@ class CmdNotice : public Command
 		{
 			const char* what() const throw();	
 		};
-        class   NeedMoreParamsNotice : public std::exception
-        {
-            const char* what() const throw();
-        };
 };
 
 #endif

@@ -28,9 +28,9 @@ void Command::setServer(Server *server)
     this->_server = server;
 }
 
-const char* Command::NeedMoreParamsException::what() const throw()
+const char* Command::InvalidNumOfArgs::what() const throw()
 {
-	return "Need more params. PASS <password>\n";
+	return "Invalid number of arguments.!\n";
 }
 
 const char* Command::NoPasswordEntered::what() const throw()

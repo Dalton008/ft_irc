@@ -5,7 +5,6 @@
 #include <vector>
 
 #include "Client.hpp"
-// #include "Server.hpp"
 
 class Client;
 class Server;
@@ -31,7 +30,7 @@ class Command
 		void			setArgs(std::vector<std::string> args);
 		void			setServer(Server *server);
 		virtual void	cmdRun() = 0;
-		class NeedMoreParamsException : public std::exception
+		class InvalidNumOfArgs : public std::exception
 		{
 			const char* what() const throw();	
 		};

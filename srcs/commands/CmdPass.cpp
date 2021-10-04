@@ -14,8 +14,8 @@ CmdPass::~CmdPass()
 
 void CmdPass::cmdRun()
 {
-	if (_args.size() == 1)
-		throw CmdPass::NeedMoreParamsException();
+	if (_args.size() != 2)
+		throw CmdPass::InvalidNumOfArgs();
 	if (!_server->checkClientPass(_args[1]))
 		throw CmdPass::IncorrectPasswordException();
 	else

@@ -17,7 +17,7 @@ void CmdNick::cmdRun()
     if (!_client->getEnterPassword())
         throw CmdNick::NoPasswordEntered();
     else if (_args.size() < 1)
-        throw CmdNick::NeedMoreParamsException();
+        throw CmdNick::InvalidNumOfArgs();
     else
     {
         _client->setNick(_args[1]);

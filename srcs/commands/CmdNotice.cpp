@@ -17,13 +17,21 @@ void CmdNotice::cmdRun()
     else if (!_client->getRegistered())
         throw CmdNotice::NoRegistered();
     else if (_args.size() < 3)
-        throw CmdNotice::NeedMoreParamsNotice();
+        throw CmdNotice::InvalidNumOfArgs();
     else
     {
         Client *toClient = _server->getClient(_args[1]);
         if (!toClient)
             throw CmdNotice::UserDoesNotExist();
-        std::string msgToClient = _args[2] + "\n";
+        std::string msgToClient = _client->getNick() + ": ";
+        for (size_t i = 2; i < _args.size(); i++)
+        {
+            msgToClient = msgToClient + _args[i];
+            if (i + 1 != _args.size())
+                msgToClient += " ";
+        }
+        msgToClient += "\n";
+        _client->sendMessageToClient("Message sending.\n");
         toClient->sendMessageToClient(msgToClient);
     }
 }
@@ -31,9 +39,4 @@ void CmdNotice::cmdRun()
 const char* CmdNotice::UserDoesNotExist::what() const throw()
 {
     return "The user does not exist!\n";
-}
-
-const char* CmdNotice::NeedMoreParamsNotice::what() const throw()
-{
-    return "Need more params <nickname> <message>\n";
 }

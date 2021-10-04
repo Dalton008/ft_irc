@@ -12,5 +12,14 @@ CmdJoin::~CmdJoin()
 
 void CmdJoin::cmdRun()
 {
-    
+    // if (!_client->getEnterPassword())
+    //     throw CmdJoin::NoPasswordEntered();
+    // else if (!_client->getRegistered())
+    //     throw CmdJoin::NoRegistered();
+    // else if (_args.size() != 2)
+    //     throw CmdJoin::NeedMoreParamsNotice();
+    // else
+    // {
+
+    // }
 }
