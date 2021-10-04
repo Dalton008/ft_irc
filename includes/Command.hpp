@@ -42,7 +42,10 @@ class Command
 		{
 			const char* what() const throw();
 		};
-
+		class ClientWithThisNickExists : public std::exception
+		{
+			const char* what() const throw();
+		};
 };
 
 #endif

@@ -236,6 +236,16 @@ bool	Server::checkExistChannel(string channelName)
 	return false;
 }
 
+bool	Server::checkExistClient(string clientName)
+{
+	for (vector<Client*>::const_iterator i = _clients.begin(); i != _clients.end(); ++i)
+	{
+		if ((*i)->getNick() == clientName)
+			return true;
+	}
+	return false;
+}
+
 Channel	*Server::getChannel(string channelName)
 {
 	for (vector<Channel*>::const_iterator i = _channels.begin(); i != _channels.end(); ++i)

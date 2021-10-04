@@ -42,3 +42,8 @@ const char* Command::NoRegistered::what() const throw()
 {
     return "User not registered!\n";
 }
+
+const char* Command::ClientWithThisNickExists::what() const throw()
+{
+    return "A user with this nickname exists!\n";
+}

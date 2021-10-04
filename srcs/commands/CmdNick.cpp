@@ -18,8 +18,14 @@ void CmdNick::cmdRun()
         throw CmdNick::NoPasswordEntered();
     else if (_args.size() < 1)
         throw CmdNick::InvalidNumOfArgs();
+    else if (_server->checkExistClient(_args[1]))
+        throw CmdNick::ClientWithThisNickExists();
     else
     {
         _client->setNick(_args[1]);
+        _client->sendMessageToClient(
+            "You changed the nickname to \"" 
+            + _client->getNick() + "\"\n"
+        );
     }
 }

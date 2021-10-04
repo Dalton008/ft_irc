@@ -56,6 +56,7 @@ public:
 		bool	checkClientPass(std::string str);
 		void	createChannel(std::string channelName);
 		bool	checkExistChannel(std::string channelName);
+		bool	checkExistClient(std::string clientNickname);
 		Client	*getClient(std::string clientName);
 		Channel	*getChannel(std::string channelName);
 };
