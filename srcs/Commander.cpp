@@ -4,6 +4,8 @@
 #include "CmdNick.hpp"
 #include "CmdUser.hpp"
 #include "CmdQuit.hpp"
+#include "CmdJoin.hpp"
+#include "CmdNotice.hpp"
 
 using namespace std;
 
@@ -15,6 +17,8 @@ Commander::Commander(Server *server)
 	commands.push_back(new CmdNick());
 	commands.push_back(new CmdUser());
 	commands.push_back(new CmdQuit());
+	commands.push_back(new CmdJoin());
+	commands.push_back(new CmdNotice());
 }
 
 Commander::~Commander()

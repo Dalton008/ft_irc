@@ -24,13 +24,13 @@ class Command
 		Command();
 		virtual ~Command();
 
-		std::string getName() {return _cmdName;}
-		std::string getDescription() {return _cmdDescription;}
-		std::string getSyntax() {return _syntax;}
-		void		setClient(Client *client);
-		void		setArgs(std::vector<std::string> args);
-		void		setServer(Server *server);
-		virtual void cmdRun() = 0;
+		std::string 	getName() {return _cmdName;}
+		std::string 	getDescription() {return _cmdDescription;}
+		std::string 	getSyntax() {return _syntax;}
+		void			setClient(Client *client);
+		void			setArgs(std::vector<std::string> args);
+		void			setServer(Server *server);
+		virtual void	cmdRun() = 0;
 		class NeedMoreParamsException : public std::exception
 		{
 			const char* what() const throw();	
@@ -39,6 +39,11 @@ class Command
 		{
 			const char* what() const throw();
 		};
+		class NoRegistered : public std::exception
+		{
+			const char* what() const throw();
+		};
+
 };
 
 #endif

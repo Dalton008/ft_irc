@@ -18,12 +18,14 @@
 # include "Announcement.hpp"
 # include "Client.hpp"
 # include "Commander.hpp"
+# include "Channel.hpp"
 
 # define MAX_CONNECTION	1024
 # define LOCALHOST "127.0.0.1"
 
 class Client;
 class Commander;
+class Channel;
 
 class Server{
 
@@ -34,6 +36,7 @@ private:
 		int						_sock;
 		std::vector<pollfd>		_pollfds;
 		std::vector<Client *>	_clients;
+		std::vector<Channel *>	_channels;
 		int						_id[3];
 
 		Commander				*_Commander;
@@ -51,6 +54,8 @@ public:
 		int		createClient(void);
 		int		recvMessage(Client *client);
 		bool	checkClientPass(std::string str);
+		void	createChannel(std::string name);
+		Client	*getClient(std::string clientName);
 };
 
 #endif

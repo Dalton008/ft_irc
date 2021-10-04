@@ -210,3 +210,18 @@ bool	Server::checkClientPass(string str)
 		return 0;
 	return 1;
 }
+
+void	Server::createChannel(string channelName)
+{
+	_channels.push_back(new Channel(channelName));
+}
+
+Client	*Server::getClient(string clientName)
+{
+	for (vector<Client*>::const_iterator i = _clients.begin(); i != _clients.end(); ++i)
+	{
+		if ((*i)->getNick() == clientName)
+			return (*i);
+	}
+	return nullptr;
+}

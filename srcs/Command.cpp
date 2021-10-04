@@ -37,3 +37,8 @@ const char* Command::NoPasswordEntered::what() const throw()
 {
     return "Enter the server password!\n";
 }
+
+const char* Command::NoRegistered::what() const throw()
+{
+    return "User not registered!\n";
+}
