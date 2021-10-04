@@ -7,6 +7,8 @@
 #include "CmdJoin.hpp"
 #include "CmdNotice.hpp"
 #include "CmdPart.hpp"
+#include "CmdInvite.hpp"
+#include "CmdKick.hpp"
 
 using namespace std;
 
@@ -21,6 +23,8 @@ Commander::Commander(Server *server)
 	commands.push_back(new CmdJoin());
 	commands.push_back(new CmdNotice());
 	commands.push_back(new CmdPart());
+	commands.push_back(new CmdInvite());
+	commands.push_back(new CmdKick());
 }
 
 Commander::~Commander()

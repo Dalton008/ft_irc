@@ -18,6 +18,7 @@ private:
 		
 		bool					_enterPassword;
 		bool					_registered;
+		bool					_isOperator;
 
 		// std::vector<Channel *>	_channels;
 		// Channel*			_channel;
@@ -35,6 +36,7 @@ public:
 		std::string getRealname(void) {return _realname;}
 		bool		getEnterPassword(void) {return _enterPassword;}
 		bool		getRegistered(void) {return _registered;}
+		bool		getIsOperator(void) {return _isOperator;}
 
 		void		setSockFd(int sock) {_sockFd = sock;}
 		void		setPort(int port) {_port = port;}
@@ -45,10 +47,7 @@ public:
 		
 		void		setEnterPassword(bool i) {_enterPassword = i;}
 		void		setRegistered(bool i) {_registered = i;}
-
-
-
-
+		void		setIsOperator(bool i) {_isOperator = i;}
 
 		
 		void		clearMessage(void);

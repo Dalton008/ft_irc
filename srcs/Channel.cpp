@@ -32,3 +32,13 @@ void    Channel::removeClient(std::string clientName)
     }
     _clients.erase(_clients.begin() + index);
 }
+
+bool    Channel::checkExistClient(std::string clientName)
+{
+    for (std::vector<Client*>::const_iterator i = _clients.begin(); i != _clients.end(); ++i)
+    {
+        if ((*i)->getNick() == clientName)
+            return true;
+    }
+    return false;
+}

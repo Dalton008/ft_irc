@@ -6,7 +6,7 @@ CmdUser::CmdUser()
 {
     _cmdName = "USER";
     _syntax = "USER <nickname> <flags> <unused> <realname>";
-    _cmdDescription = "Sets the user name, host, real name, and connection flag.";
+    _cmdDescription = "Sets the user name, real name, and connection flag.";
 }
 
 CmdUser::~CmdUser()

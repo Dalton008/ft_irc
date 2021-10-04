@@ -33,11 +33,10 @@ void CmdNotice::cmdRun()
         msgToClient += "\n";
         _client->sendMessageToClient("Message sending.\n");
         toClient->sendMessageToClient(msgToClient);
-        
     }
 }
 
-const char* CmdNotice::UserDoesNotExist::what() const throw()
-{
-    return "The user does not exist!\n";
-}
+// const char* CmdNotice::UserDoesNotExist::what() const throw()
+// {
+//     return "The user does not exist!\n";
+// }

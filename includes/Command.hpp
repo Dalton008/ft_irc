@@ -50,6 +50,18 @@ class Command
 		{
 			const char* what() const throw();
 		};
+	    class   UserDoesNotExist : public std::exception
+		{
+			const char* what() const throw();	
+		};
+	    class ChannelDoesNotExist : public std::exception
+		{
+			const char* what() const throw();	
+		};
+		class ClientIsNotOperator : public std::exception
+		{
+			const char* what() const throw();
+		};
 };
 
 #endif

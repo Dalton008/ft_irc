@@ -52,3 +52,18 @@ const char* Command::ClientWithThisNickRegistered::what() const throw()
 {
     return "A user with this nickname registered!\n";
 }
+
+const char* Command::UserDoesNotExist::what() const throw()
+{
+    return "The user does not exist!\n";
+}
+
+const char* Command::ChannelDoesNotExist::what() const throw()
+{
+    return "The channel does not exist!\n";
+}
+
+const char* Command::ClientIsNotOperator::what() const throw()
+{
+    return "The client is not an operator!\n";
+}
