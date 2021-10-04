@@ -9,10 +9,14 @@ class CmdNotice : public Command
         CmdNotice();
         ~CmdNotice();
         void cmdRun();
-        class  UserDoesNotExist : public std::exception
+        class   UserDoesNotExist : public std::exception
 		{
 			const char* what() const throw();	
 		};
+        class   NeedMoreParamsNotice : public std::exception
+        {
+            const char* what() const throw();
+        };
 };
 
 #endif
