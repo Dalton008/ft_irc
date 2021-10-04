@@ -20,3 +20,15 @@ void    Channel::sendMessageToChannel(std::string message)
         (*i)->sendMessageToClient(message);
     }
 }
+
+void    Channel::removeClient(std::string clientName)
+{
+    int index = 0;
+    for (std::vector<Client*>::const_iterator i = _clients.begin(); i != _clients.end(); ++i)
+    {
+        if ((*i)->getNick() == clientName)
+            break;
+        index++;
+    }
+    _clients.erase(_clients.begin() + index);
+}

@@ -6,6 +6,7 @@
 #include "CmdQuit.hpp"
 #include "CmdJoin.hpp"
 #include "CmdNotice.hpp"
+#include "CmdPart.hpp"
 
 using namespace std;
 
@@ -19,6 +20,7 @@ Commander::Commander(Server *server)
 	commands.push_back(new CmdQuit());
 	commands.push_back(new CmdJoin());
 	commands.push_back(new CmdNotice());
+	commands.push_back(new CmdPart());
 }
 
 Commander::~Commander()

@@ -230,7 +230,7 @@ bool	Server::checkExistChannel(string channelName)
 {
 	for (vector<Channel*>::const_iterator i = _channels.begin(); i != _channels.end(); ++i)
 	{
-		if ((*i)->getChannleName() == channelName)
+		if ((*i)->getChannelName() == channelName)
 			return true;
 	}
 	return false;
@@ -240,7 +240,7 @@ Channel	*Server::getChannel(string channelName)
 {
 	for (vector<Channel*>::const_iterator i = _channels.begin(); i != _channels.end(); ++i)
 	{
-		if ((*i)->getChannleName() == channelName)
+		if ((*i)->getChannelName() == channelName)
 			return (*i);
 	}
 	return nullptr;

@@ -12,9 +12,10 @@ class Channel
 	public:
 		Channel(std::string name);
 		~Channel();
-		std::string	getChannleName() {return _channelName;}
+		std::string	getChannelName() {return _channelName;}
 		void		setClient(Client *client);
 		void		sendMessageToChannel(std::string message);
+		void		removeClient(std::string clientName);
 };
 
 #endif

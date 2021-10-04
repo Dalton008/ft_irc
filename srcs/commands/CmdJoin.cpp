@@ -27,6 +27,7 @@ void CmdJoin::cmdRun()
         channel->sendMessageToChannel(
             "User " + _client->getNick() +
             " join to " +
-            channel->getChannleName() + "\n");
+            channel->getChannelName() + "\n"
+        );
     }
 }

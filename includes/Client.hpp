@@ -10,7 +10,7 @@ class Client {
 private:
 		int						_sockFd;
 		int						_port;
-		std::string				_id;
+		std::string				_id; // del?
 		std::string				_host;
 		std::string				_nickname;
 		std::string				_realname;
@@ -26,7 +26,7 @@ public:
 		Client(int sockFd, int port, Server *serv, char *host = nullptr);
 		~Client(void) {};
 
-		std::string getId(void) {return _id;}
+		std::string getId(void) {return _id;} // del?
 		std::string getNick(void) {return _nickname;}
 		int			getSockFd(void) {return _sockFd;}
 		std::string	getHost(void) {return _host;}
@@ -38,7 +38,7 @@ public:
 
 		void		setSockFd(int sock) {_sockFd = sock;}
 		void		setPort(int port) {_port = port;}
-		void		setId(std::string id) {_id = id;}
+		void		setId(std::string id) {_id = id;} // del?
 		void		setHost(std::string host) {_host = host;}
 		void		setNick(std::string nick) {_nickname = nick;}
 		void		setRealname(std::string name) {_realname = name;}
