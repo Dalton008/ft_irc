@@ -13,6 +13,7 @@ class Channel
 		Channel(std::string name);
 		~Channel();
 		std::string	getChannelName() {return _channelName;}
+		std::vector<Client*> getClients() {return _clients;}
 		bool		checkExistClient(std::string clientName);
 		void		setClient(Client *client);
 		void		sendMessageToChannel(std::string message);
