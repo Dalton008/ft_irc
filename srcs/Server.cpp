@@ -255,3 +255,8 @@ Channel	*Server::getChannel(string channelName)
 	}
 	return nullptr;
 }
+
+vector<Channel*> Server::getAllChannels()
+{
+	return _channels;
+}

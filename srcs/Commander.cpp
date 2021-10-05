@@ -9,6 +9,9 @@
 #include "CmdPart.hpp"
 #include "CmdInvite.hpp"
 #include "CmdKick.hpp"
+#include "CmdAway.hpp"
+#include "CmdPrivmsg.hpp"
+#include "CmdList.hpp"
 
 using namespace std;
 
@@ -25,6 +28,9 @@ Commander::Commander(Server *server)
 	commands.push_back(new CmdPart());
 	commands.push_back(new CmdInvite());
 	commands.push_back(new CmdKick());
+	commands.push_back(new CmdPrivmsg());
+	commands.push_back(new CmdAway());
+	commands.push_back(new CmdList());
 }
 
 Commander::~Commander()

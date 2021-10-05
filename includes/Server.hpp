@@ -48,17 +48,18 @@ public:
 		int	getId(int i);
 		Client *getIdClient(std::string id);
 
-		void	createSocket(void);
-		void	start(void);
-		void	deleteClient(std::string id);
-		int		createClient(void);
-		int		recvMessage(Client *client);
-		bool	checkClientPass(std::string str);
-		void	createChannel(std::string channelName);
-		bool	checkExistChannel(std::string channelName);
-		bool	checkExistClient(std::string clientNickname);
-		Client	*getClient(std::string clientName);
-		Channel	*getChannel(std::string channelName);
+		void					createSocket(void);
+		void					start(void);
+		void					deleteClient(std::string id);
+		int						createClient(void);
+		int						recvMessage(Client *client);
+		bool					checkClientPass(std::string str);
+		void					createChannel(std::string channelName);
+		bool					checkExistChannel(std::string channelName);
+		bool					checkExistClient(std::string clientNickname);
+		Client					*getClient(std::string clientName);
+		Channel					*getChannel(std::string channelName);
+		std::vector<Channel*>	getAllChannels();
 };
 
 #endif

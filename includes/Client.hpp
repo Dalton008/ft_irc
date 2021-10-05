@@ -15,6 +15,7 @@ private:
 		std::string				_nickname;
 		std::string				_realname;
 		std::string				_message;
+		std::string				_awayMessage;
 		
 		bool					_enterPassword;
 		bool					_registered;
@@ -34,6 +35,7 @@ public:
 		int			getPort(void) {return _port;}
 		std::string getMessage(void) {return _message;}
 		std::string getRealname(void) {return _realname;}
+		std::string	getAwayMessage(void) {return _awayMessage;}
 		bool		getEnterPassword(void) {return _enterPassword;}
 		bool		getRegistered(void) {return _registered;}
 		bool		getIsOperator(void) {return _isOperator;}
@@ -44,6 +46,7 @@ public:
 		void		setHost(std::string host) {_host = host;}
 		void		setNick(std::string nick) {_nickname = nick;}
 		void		setRealname(std::string name) {_realname = name;}
+		void		setAwayMessage(std::string message) {_awayMessage = message;}
 		
 		void		setEnterPassword(bool i) {_enterPassword = i;}
 		void		setRegistered(bool i) {_registered = i;}
