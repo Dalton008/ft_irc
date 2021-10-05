@@ -60,6 +60,7 @@ public:
 		Client					*getClient(std::string clientName);
 		Channel					*getChannel(std::string channelName);
 		std::vector<Channel*>	getAllChannels();
+		std::vector<Client*>	getAllClients();
 };
 
 #endif

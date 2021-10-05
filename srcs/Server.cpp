@@ -260,3 +260,8 @@ vector<Channel*> Server::getAllChannels()
 {
 	return _channels;
 }
+
+vector<Client*>	Server::getAllClients()
+{
+	return _clients;
+}

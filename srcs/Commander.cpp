@@ -12,7 +12,7 @@
 #include "CmdAway.hpp"
 #include "CmdPrivmsg.hpp"
 #include "CmdList.hpp"
-#include "CmdWho.hpp"
+#include "CmdNames.hpp"
 
 using namespace std;
 
@@ -32,7 +32,7 @@ Commander::Commander(Server *server)
 	commands.push_back(new CmdPrivmsg());
 	commands.push_back(new CmdAway());
 	commands.push_back(new CmdList());
-	commands.push_back(new CmdWho());
+	commands.push_back(new CmdNames());
 }
 
 Commander::~Commander()
