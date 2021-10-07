@@ -12,30 +12,27 @@ CmdNotice::~CmdNotice()
 
 void CmdNotice::cmdRun()
 {
-    if (!_client->getEnterPassword())
-        throw CmdNotice::NoPasswordEntered();
-    else if (!_client->getRegistered())
-        throw CmdNotice::NoRegistered();
-    else if (_args.size() < 3)
-        throw CmdNotice::InvalidNumOfArgs();
+    if (!_client->getRegistered())
+        throw CmdNotice::ERR_RESTRICTED();
     else
     {
         std::string msg = createMsg();
         if (_args[1][0] == '#' || _args[1][0] == '&')
         {
+            Client *toClient = _server->getClient(_args[1]);
             Channel *toChannel = _server->getChannel(_args[1]);
             if (!toChannel)
                 throw CmdNotice::ChannelDoesNotExist();
-            _client->sendMessageToClient("Message sending.\n");
-            toChannel->sendMessageToChannel(msg);
+            std::string toClientStr = toClient->getNick();
+            toChannel->sendMessageToChannel(":" + toClientStr + " NOTICE #" + toChannel->getChannelName() + msg + "\r\n");
         }
         else
         {
             Client *toClient = _server->getClient(_args[1]);
             if (!toClient)
                 throw CmdNotice::UserDoesNotExist();
-            _client->sendMessageToClient("Message sending.\n");
-            toClient->sendMessageToClient(msg);
+            std::string toClientStr = toClient->getNick(); 
+            toClient->sendMessageToClient(":" + toClientStr + " NOTICE " + toClientStr + msg + "\r\n");
         }
     }
 }
@@ -49,6 +46,5 @@ std::string CmdNotice::createMsg()
         if (i + 1 != _args.size())
             msg += " ";
     }
-    msg += "\n";
     return msg;
 }

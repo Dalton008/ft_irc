@@ -56,6 +56,7 @@ public:
 		void		clearMessage(void);
 		void		appendMessage(std::string message);
 		void		sendMessageToClient(std::string message);
+		void		registered();
 };
 
 #endif

@@ -3,7 +3,8 @@
 using namespace std;
 
 Client::Client(int sockFd, int port, Server *serv, char *host) : _sockFd(sockFd), _port(port), _host(host){
-	_nickname = "unknown";
+	_nickname = "";
+	_realname = "";
 	_isOperator = false;
 	_awayMessage = "";
 	// _channel = nullptr;
@@ -26,4 +27,19 @@ void			Client::appendMessage(string message)
 void		Client::sendMessageToClient(std::string message)
 {
 	send(_sockFd, message.c_str(), message.length(), 0);
+}
+
+void		Client::registered()
+{
+	cout << getEnterPassword() << "|" << _nickname + "|" + _realname + "|" << endl; 
+	if (getEnterPassword() && _nickname != "" && _realname != "")
+	{
+		std::string msg;
+		sendMessageToClient(
+			"001 * Welcome to the Internet Relay Network " +
+			this->getNick() + "!" + this->getRealname() +
+			"@" + this->getHost() + "\r\n"
+		);
+		_registered = true;
+	}
 }

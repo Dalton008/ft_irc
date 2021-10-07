@@ -12,28 +12,22 @@ CmdPart::~CmdPart()
 
 void CmdPart::cmdRun()
 {
-    if (!_client->getEnterPassword())
-        throw CmdPart::NoPasswordEntered();
-    else if (!_client->getRegistered())
-        throw CmdPart::NoRegistered();
-    else if (_args.size() != 2)
-        throw CmdPart::InvalidNumOfArgs();
+    if (!_client->getRegistered())
+        throw CmdPart::ERR_RESTRICTED();
+    else if (_args.size() < 2)
+        throw "461 * PART: Not enough parameters\r\n";
     else
     {
         Channel *channel = _server->getChannel(_args[1]);
         if (!channel)
-            throw CmdPart::NoSuchChannelException();
+            throw "403 * #" + _args[1] + ":No such channel\r\n";
+        if (!channel->getClient(_client->getNick()))
+            throw "442 * " + _args[1] + ":You're not on that channel\r\n";
         channel->removeClient(_client->getNick());
         channel->sendMessageToChannel(
-            "Client " +
-            _client->getNick() +
-            " left channel " +
-            channel->getChannelName() +
-            "\n"
-        );
-        _client->sendMessageToClient(
-            "You have left the channel: \"" + 
-            channel->getChannelName() + "\"\n"
+            ":" + _client->getNick() +
+            " " + "PART" + " #" +
+            channel->getChannelName()
         );
     }
 }

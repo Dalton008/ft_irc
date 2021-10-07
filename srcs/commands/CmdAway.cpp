@@ -1,5 +1,7 @@
 #include "CmdAway.hpp"
 
+//made for nc in terminal
+
 CmdAway::CmdAway()
 {
     _cmdName = "AWAY";
@@ -12,10 +14,8 @@ CmdAway::~CmdAway()
 
 void CmdAway::cmdRun()
 {
-    if (!_client->getEnterPassword())
-        throw CmdAway::NoPasswordEntered();
-    else if (!_client->getRegistered())
-        throw CmdAway::NoRegistered();
+    if (!_client->getRegistered())
+        throw CmdAway::ERR_RESTRICTED();
     else
     {
         if (_args.size() == 2)

@@ -38,7 +38,7 @@ class Command
 		{
 			const char* what() const throw();
 		};
-		class NoRegistered : public std::exception
+		class ERR_RESTRICTED : public std::exception
 		{
 			const char* what() const throw();
 		};

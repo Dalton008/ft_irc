@@ -12,28 +12,25 @@ CmdKick::~CmdKick()
 
 void CmdKick::cmdRun()
 {
-    if (!_client->getEnterPassword())
-        throw CmdKick::NoPasswordEntered();
-    else if (!_client->getRegistered())
-        throw CmdKick::NoRegistered();
-    else if (_args.size() != 3)
-        throw CmdKick::InvalidNumOfArgs();
-    else if (!_client->getIsOperator())
-        throw CmdKick::ClientIsNotOperator();
+    if (!_client->getRegistered())
+        throw CmdKick::ERR_RESTRICTED();
+    else if (_args.size() <  2)
+        throw "461 * KICK: Not enough parameters\r\n";
     else
     {
         Channel *toChannel = _server->getChannel(_args[1]);
         if (!toChannel)
-            throw CmdKick::ChannelDoesNotExist();
+            throw "403 * #" + _args[1] + ":No such channel\r\n";
+        if (!_client->getIsOperator())
+            throw "482 * #" + _args[1] + ":You're not channel operator\r\n";
+        if (toChannel->getClient(_client->getNick()))
+            throw "442 * " + _args[1] + ":You're not on that channel\r\n";
+        
         Client *toClient = _server->getClient(_args[2]);
         if (!toClient)
-            throw CmdKick::UserDoesNotExist();
-        _client->sendMessageToClient(
-            "You kick client: \"" + 
-            toClient->getNick() +
-            "\" from the channel: \"" +
-            toChannel->getChannelName() +
-            "\"\n"
+            throw "441 * " + _args[2] + " #" + _args[1] + ":They aren't on that channel\r\n";
+        toChannel->sendMessageToChannel(
+            ":" + toClient->getNick() + " " + "KICK #" + toChannel->getChannelName() + " : kicked " + toClient->getNick() + "\r\n"
         );
         toChannel->removeClient(toClient->getNick());
     }

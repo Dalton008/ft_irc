@@ -8,7 +8,7 @@ int main(int argc, char **argv){
             Announcement::Fatal("Error: Usage: irc [host:port:password] <port> <password>");
         if (argc == 3)
         {
-            Server ircserv("10.21.34.16", argv[1], argv[2]);
+            Server ircserv("127.0.0.1", argv[1], argv[2]);
             ircserv.start();
         }
         else
@@ -29,3 +29,4 @@ int main(int argc, char **argv){
 	
 	return (0);
 }
+//10.21.34.16

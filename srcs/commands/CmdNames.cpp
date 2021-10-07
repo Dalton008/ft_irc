@@ -1,5 +1,7 @@
 #include "CmdNames.hpp"
 
+//made for nc in terminal
+
 CmdNames::CmdNames()
 {
     _cmdName = "NAMES";
@@ -12,10 +14,8 @@ CmdNames::~CmdNames()
 
 void CmdNames::cmdRun()
 {
-    if (!_client->getEnterPassword())
-        throw CmdNames::NoPasswordEntered();
-    else if (!_client->getRegistered())
-        throw CmdNames::NoRegistered();
+    if (!_client->getRegistered())
+        throw CmdNames::ERR_RESTRICTED();
     else if (_args.size() > 2)
         throw CmdNames::InvalidNumOfArgs();
     else

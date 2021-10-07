@@ -14,18 +14,16 @@ CmdNick::~CmdNick()
 
 void CmdNick::cmdRun()
 {
-    if (!_client->getEnterPassword())
-        throw CmdNick::NoPasswordEntered();
-    else if (_args.size() < 1)
-        throw CmdNick::InvalidNumOfArgs();
+    if (_args.size() < 1)
+        throw "461 * NICK: Not enough parameters\r\n";
     else if (_server->checkExistClient(_args[1]))
-        throw CmdNick::ClientWithThisNickExists();
+        throw "433 * " + _args[1] + ":Nickname is already in use\r\n";
     else
     {
         _client->setNick(_args[1]);
         _client->sendMessageToClient(
-            "You changed the nickname to \"" 
-            + _client->getNick() + "\"\n"
+            ":" + _client->getNick() + " " + "NICK " + _client->getNick() + "\r\n"
         );
+        _client->registered();
     }
 }

@@ -53,7 +53,8 @@ void Commander::parse(Client *client, string msg)
 	// }
 	if (!arg.empty())
 	{
-		
+		cout << "@" << _client->getNick() << " " << msg;
+		// cout << "MSG= " + msg << endl;
 		for (vector<Command*>::const_iterator iterCmd = commands.begin(); iterCmd != commands.end(); ++iterCmd)
 		{
 			// cout <<  "'" + (*iterCmd)->getName() + "'" << " " << "'" + arg[0] + "'" << endl; //del
@@ -66,9 +67,19 @@ void Commander::parse(Client *client, string msg)
 				{
 					(*iterCmd)->cmdRun();
 				}
-				catch(const std::exception& e)
+				catch(const exception& e)
 				{
-					_client->sendMessageToClient(e.what());
+					cout << "'" + string(e.what()) + "'" << endl;
+					client->sendMessageToClient(string(e.what()));
+				}
+				catch (const char* message)
+				{
+					string str = string(message);
+					_client->sendMessageToClient(str);
+				}
+				catch(string message)
+				{
+					_client->sendMessageToClient(message );
 				}
 				break;
 			}

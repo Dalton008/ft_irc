@@ -14,6 +14,7 @@ class Channel
 		~Channel();
 		std::string	getChannelName() {return _channelName;}
 		std::vector<Client*> getClients() {return _clients;}
+		Client		*getClient(std::string clientName);
 		bool		checkExistClient(std::string clientName);
 		void		setClient(Client *client);
 		void		sendMessageToChannel(std::string message);

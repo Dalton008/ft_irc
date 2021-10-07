@@ -38,9 +38,9 @@ const char* Command::NoPasswordEntered::what() const throw()
     return "Enter the server password!\n";
 }
 
-const char* Command::NoRegistered::what() const throw()
+const char* Command::ERR_RESTRICTED::what() const throw()
 {
-    return "User not registered!\n";
+    return "484 * :Your connection is restricted!\r\n";
 }
 
 const char* Command::ClientWithThisNickExists::what() const throw()
@@ -55,7 +55,7 @@ const char* Command::ClientWithThisNickRegistered::what() const throw()
 
 const char* Command::UserDoesNotExist::what() const throw()
 {
-    return "The user does not exist!\n";
+    return "error nick or channel not found\r\n";
 }
 
 const char* Command::ChannelDoesNotExist::what() const throw()
