@@ -1,4 +1,5 @@
 #include "CmdInvite.hpp"
+#include "Define.hpp"
 
 CmdInvite::CmdInvite()
 {
@@ -20,9 +21,12 @@ void CmdInvite::cmdRun()
         throw "482 * #" + _args[2] + ":You're not channel operator\r\n";
     else
     {
+        Channel *toChannel = _server->getChannel(_args[2]);
+        if (!toChannel->getClient(_client->getNick()))
+            throw "442 * #" + toChannel->getChannelName() + " :You're not on that channel";
         Client *toClient = _server->getClient(_args[1]);
         if (!toClient)
-            throw CmdInvite::NickOrChannelNameError();
+            throw ERR_NOSUCHNICK(_args[1]);
         // Channel *toChannel = _server->getChannel(_args[2]);
         // if (!toChannel)
         //     throw CmdInvite::ChannelDoesNotExist();

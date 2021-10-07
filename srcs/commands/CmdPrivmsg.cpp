@@ -1,4 +1,5 @@
 #include "CmdPrivmsg.hpp"
+#include "Define.hpp"
 
 CmdPrivmsg::CmdPrivmsg()
 {
@@ -28,7 +29,7 @@ void CmdPrivmsg::cmdRun()
         {
             Client *toClient = _server->getClient(_args[1]);
             if (!toClient)
-                throw CmdPrivmsg::NickOrChannelNameError();
+                throw ERR_NOSUCHNICK(_args[1]);
             std::string toClientStr = toClient->getNick();
             toClient->sendMessageToClient(":" + _client->getNick() + " PRIVMSG " + toClientStr + ": " + msg + "\r\n");
             if (toClient->getAwayMessage().size() != 0)
