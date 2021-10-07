@@ -30,7 +30,7 @@ void CmdNotice::cmdRun()
         {
             Client *toClient = _server->getClient(_args[1]);
             if (!toClient)
-                throw CmdNotice::UserDoesNotExist();
+                throw CmdNotice::NickOrChannelNameError();
             std::string toClientStr = toClient->getNick(); 
             toClient->sendMessageToClient(":" + toClientStr + " NOTICE " + toClientStr + msg + "\r\n");
         }

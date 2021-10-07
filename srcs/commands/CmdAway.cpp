@@ -1,7 +1,5 @@
 #include "CmdAway.hpp"
 
-//made for nc in terminal
-
 CmdAway::CmdAway()
 {
     _cmdName = "AWAY";
@@ -20,7 +18,7 @@ void CmdAway::cmdRun()
     {
         if (_args.size() == 2)
         {
-            _client->setAwayMessage(_args[1] + '\n');
+            _client->setAwayMessage(_args[1]);
         }
         else
         {

@@ -1,7 +1,5 @@
 #include "CmdInvite.hpp"
 
-//made for nc in terminal
-
 CmdInvite::CmdInvite()
 {
     _cmdName = "INVITE";
@@ -24,7 +22,7 @@ void CmdInvite::cmdRun()
     {
         Client *toClient = _server->getClient(_args[1]);
         if (!toClient)
-            throw CmdInvite::UserDoesNotExist();
+            throw CmdInvite::NickOrChannelNameError();
         // Channel *toChannel = _server->getChannel(_args[2]);
         // if (!toChannel)
         //     throw CmdInvite::ChannelDoesNotExist();

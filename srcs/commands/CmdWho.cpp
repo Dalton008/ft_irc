@@ -4,7 +4,7 @@ CmdWho::CmdWho()
 {
     _cmdName = "WHO";
     _syntax = "WHO <#channel>";
-    _cmdDescription = "List of users on the channel.";
+    _cmdDescription = "List users on channel";
 }
 
 CmdWho::~CmdWho()
@@ -12,22 +12,21 @@ CmdWho::~CmdWho()
 
 void CmdWho::cmdRun()
 {
-    if (!_client->getEnterPassword())
-        throw CmdWho::NoPasswordEntered();
-    else if (!_client->getRegistered())
-        throw CmdWho::NoRegistered();
-    else if (_args.size() != 2)
-        throw CmdWho::InvalidNumOfArgs();
+    if (!_client->getRegistered())
+        throw CmdWho::ERR_RESTRICTED();
+    else if (_args.size() < 2)
+        throw "461 * WHO: Not enough parameters\r\n";
     else
     {
-        Channel *channel = _server->getChannel(_args[1]);
-        if (!channel)
-            throw CmdWho::ChannelDoesNotExist();
-        std::vector<Client*> clients = channel->getClients();
-        for (std::vector<Client*>::const_iterator i = clients.begin(); i != clients.end(); ++i)
+        Channel *toChannel = _server->getChannel(_args[1]);
+        if (!toChannel)
+            throw "403 * " + _args[1] + ":No such channel\r\n";
+        std::vector<Client*> clients = toChannel->getClients();
+        _client->sendMessageToClient("Channel " + toChannel->getChannelName() + " has " + std::to_string(clients.size()) + " users\r\n");
+        for (std::vector<Client*>::const_iterator i = clients.begin(); i != clients.end(); i++)
         {
-            _client->sendMessageToClient((*i)->getNick() + " ");
+            if ((*i)->getIsOperator())
+                _client->sendMessageToClient("@" + (*i)->getNick() + "\r\n");
         }
-         _client->sendMessageToClient("\n");
     }
 }

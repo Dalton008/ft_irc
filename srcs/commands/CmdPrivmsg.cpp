@@ -14,29 +14,31 @@ void CmdPrivmsg::cmdRun()
 {
     if (!_client->getRegistered())
         throw CmdPrivmsg::ERR_RESTRICTED();
-    // else if (_args.size() < 3)
-    //     throw CmdPrivmsg::InvalidNumOfArgs();
+    else if (_args.size() < 3)
+        throw "461 * PROVMSG: Not enough parameters\r\n";
     else
     {
         std::string msg = createMsg();
-        if (_args[1][0] == '#' || _args[1][0] == '&')
+        Channel *toChannel = _server->getChannel(_args[1]);
+        if (toChannel != nullptr)
         {
-            Channel *toChannel = _server->getChannel(_args[1]);
-            if (!toChannel)
-                throw CmdPrivmsg::ChannelDoesNotExist();
             toChannel->sendMessageToChannel(":" + _client->getNick() + " PRIVMSG " + toChannel->getChannelName() + " : " + msg);
         }
         else
         {
             Client *toClient = _server->getClient(_args[1]);
             if (!toClient)
-                throw CmdPrivmsg::UserDoesNotExist();
+                throw CmdPrivmsg::NickOrChannelNameError();
             std::string toClientStr = toClient->getNick();
-            toClient->sendMessageToClient(":" + toClientStr + " PRIVMSG " + toClientStr +  msg);
+            toClient->sendMessageToClient(":" + _client->getNick() + " PRIVMSG " + toClientStr + ": " + msg + "\r\n");
+            if (toClient->getAwayMessage().size() != 0)
+            {
+                _client->sendMessageToClient(":" + toClient->getNick() + " PRIVMSG " + _client->getNick() + ": " + toClient->getAwayMessage() + "\r\n");
+            }
         }
     }
 }
-//: PRIVSMG #<channelname> : <message> 
+
 std::string CmdPrivmsg::createMsg()
 {
     std::string msg;

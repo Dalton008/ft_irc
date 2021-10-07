@@ -53,7 +53,7 @@ const char* Command::ClientWithThisNickRegistered::what() const throw()
     return "A user with this nickname registered!\n";
 }
 
-const char* Command::UserDoesNotExist::what() const throw()
+const char* Command::NickOrChannelNameError::what() const throw()
 {
     return "error nick or channel not found\r\n";
 }
