@@ -47,21 +47,13 @@ Commander::~Commander()
 
 void Commander::parse(Client *client, string msg)
 {
-
-	// cout << "|" + msg + "|" << endl; //del
 	vector<string> arg = splitMsg(msg);
 	_client = client;
-	// for (vector<string>::const_iterator i = arg.begin(); i != arg.end(); ++i)
-	// {
-	// 	cout << *i << endl;
-	// }
 	if (!arg.empty())
 	{
 		cout << "@" << _client->getNick() << " " << msg;
-		// cout << "MSG= " + msg << endl;
 		for (vector<Command*>::const_iterator iterCmd = commands.begin(); iterCmd != commands.end(); ++iterCmd)
 		{
-			// cout <<  "'" + (*iterCmd)->getName() + "'" << " " << "'" + arg[0] + "'" << endl; //del
 			if (arg[0] == (*iterCmd)->getName())
 			{
 				(*iterCmd)->setClient(client);

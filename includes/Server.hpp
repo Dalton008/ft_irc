@@ -20,9 +20,6 @@
 # include "Commander.hpp"
 # include "Channel.hpp"
 
-# define MAX_CONNECTION	1024
-# define LOCALHOST "127.0.0.1"
-
 class Client;
 class Commander;
 class Channel;
@@ -38,7 +35,6 @@ private:
 		std::vector<Client *>	_clients;
 		std::vector<Channel *>	_channels;
 		int						_id[3];
-
 		Commander				*_Commander;
 
 public:

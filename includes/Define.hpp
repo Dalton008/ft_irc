@@ -3,6 +3,10 @@
 
 using namespace std;
 
+#define	LOCALHOST		"10.21.34.16"
+#define MAX_CONNECTION	1024
+//10.21.34.16
+//127.0.0.1
 #define ERR_NOSUCHNICK(nickname)				"401 * " + nickname + " :No such nick/channel\r\n"
 #define ERR_NOSUCHSERVER(servername)			"402 * " + servername + " :No such server\r\n"
 #define ERR_NOSUCHCHANNEL(channelname)			"403 * #" + channelname + " :No such channel\r\n"

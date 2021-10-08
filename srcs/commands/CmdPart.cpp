@@ -32,8 +32,3 @@ void CmdPart::cmdRun()
         );
     }
 }
-
-const char* CmdPart::NoSuchChannelException::what() const throw()
-{
-    return "No such channel!\n";
-}

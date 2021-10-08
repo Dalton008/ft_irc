@@ -1,6 +1,5 @@
 #include "../includes/Server.hpp"
-
-using namespace std;
+#include "Define.hpp"
 
 Server::Server(string host, string port, string pass) : _host(host), _port(port), _pass(pass) {
 	stringstream stream;
