@@ -14,6 +14,7 @@
 #include "CmdList.hpp"
 #include "CmdNames.hpp"
 #include "CmdWho.hpp"
+#include "CmdTime.hpp"
 
 using namespace std;
 
@@ -35,6 +36,7 @@ Commander::Commander(Server *server)
 	commands.push_back(new CmdList());
 	commands.push_back(new CmdNames());
 	commands.push_back(new CmdWho());
+	commands.push_back(new CmdTime());
 }
 
 Commander::~Commander()
@@ -81,7 +83,7 @@ void Commander::parse(Client *client, string msg)
 				}
 				catch(string message)
 				{
-					_client->sendMessageToClient(message );
+					_client->sendMessageToClient(message);
 				}
 				break;
 			}

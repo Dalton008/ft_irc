@@ -14,9 +14,13 @@ CmdPrivmsg::~CmdPrivmsg()
 void CmdPrivmsg::cmdRun()
 {
     if (!_client->getRegistered())
-        throw CmdPrivmsg::ERR_RESTRICTED();
+        throw ERR_RESTRICTED;
+    else if (_args.size() == 2)
+        throw ERR_NOTEXTTOSEND;
     else if (_args.size() < 3)
-        throw "461 * PROVMSG: Not enough parameters\r\n";
+        throw ERR_NEEDMOREPARAMS(_args[0]);
+    else if (_client->getNick() == _args[1])
+        throw ERR_TOOMANYTARGETS(_args[1]);
     else
     {
         std::string msg = createMsg();
@@ -34,21 +38,9 @@ void CmdPrivmsg::cmdRun()
             toClient->sendMessageToClient(":" + _client->getNick() + " PRIVMSG " + toClientStr + ": " + msg + "\r\n");
             if (toClient->getAwayMessage().size() != 0)
             {
-                _client->sendMessageToClient(":" + toClient->getNick() + " PRIVMSG " + _client->getNick() + ": " + toClient->getAwayMessage() + "\r\n");
+                throw RPL_AWAY(toClient->getNick(), toClient->getAwayMessage());
+                // _client->sendMessageToClient(":" + toClient->getNick() + " PRIVMSG " + _client->getNick() + ": " + toClient->getAwayMessage() + "\r\n");
             }
         }
     }
-}
-
-std::string CmdPrivmsg::createMsg()
-{
-    std::string msg;
-    for (size_t i = 2; i < _args.size(); i++)
-    {
-        msg = msg + _args[i];
-        if (i + 1 != _args.size())
-            msg += " ";
-    }
-    msg += "\n";
-    return msg;
 }

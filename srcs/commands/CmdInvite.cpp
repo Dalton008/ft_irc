@@ -14,22 +14,21 @@ CmdInvite::~CmdInvite()
 void CmdInvite::cmdRun()
 {
     if (!_client->getRegistered())
-        throw CmdInvite::ERR_RESTRICTED();
+        throw ERR_RESTRICTED;
     else if (_args.size() != 3)
-        throw "461 * JOIN: Not enough parameters\r\n";
+        throw ERR_NEEDMOREPARAMS(_args[0]);
     else if (!_client->getIsOperator())
-        throw "482 * #" + _args[2] + ":You're not channel operator\r\n";
+        throw ERR_CHANOPRIVSNEEDED(_args[1]);
     else
     {
         Channel *toChannel = _server->getChannel(_args[2]);
         if (!toChannel->getClient(_client->getNick()))
-            throw "442 * #" + toChannel->getChannelName() + " :You're not on that channel";
+            throw ERR_NOTONCHANNEL(toChannel->getChannelName());
         Client *toClient = _server->getClient(_args[1]);
         if (!toClient)
             throw ERR_NOSUCHNICK(_args[1]);
-        // Channel *toChannel = _server->getChannel(_args[2]);
-        // if (!toChannel)
-        //     throw CmdInvite::ChannelDoesNotExist();
+        if (toChannel->getClient(toClient->getNick()))
+            throw ERR_USERONCHANNEL(toClient->getNick(), toChannel->getChannelName());
         toClient->sendMessageToClient(
             ":" + _client->getNick() +
             " INVITE " + _args[1] +

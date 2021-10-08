@@ -1,6 +1,5 @@
 #include "CmdJoin.hpp"
-
-#include <stdexcept>
+#include "Define.hpp"
 
 CmdJoin::CmdJoin()
 {
@@ -15,13 +14,13 @@ CmdJoin::~CmdJoin()
 void CmdJoin::cmdRun()
 {
     if (!_client->getRegistered())
-        throw CmdJoin::ERR_RESTRICTED();
-    else if (_args.size() < 1)
-        throw "461 * JOIN: Not enough parameters\r\n";
+        throw ERR_RESTRICTED;
+    else if (_args.size() < 2)
+        throw ERR_NEEDMOREPARAMS(_args[0]);
     else
     {
         if (!checkNameChannel(_args[1]))
-            throw "476 * " + _args[1] + ":Bad Channel Mask\r\n";
+            throw ERR_BADCHANMASK(_args[1]);
         Channel *channel = _server->getChannel(_args[1]);
         if (!channel)
         {
@@ -29,9 +28,10 @@ void CmdJoin::cmdRun()
             _server->createChannel(_args[1]);
             channel = _server->getChannel(_args[1]);
             _client->setIsOperator(true);
+            _client->sendMessageToClient(RPL_NOTOPIC(channel->getChannelName()));
         }
         if (channel->getClient(_client->getNick()))
-            throw "405 * #" + channel->getChannelName() + ":You have joined too many channels\r\n";
+            throw ERR_TOOMANYCHANNELS(_args[1]);
         channel->setClient(_client);
         channel->sendMessageToChannel(
             ":" + _client->getNick() + " JOIN #" + 

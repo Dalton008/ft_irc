@@ -1,6 +1,5 @@
 #include "CmdUser.hpp"
-
-using namespace std;
+#include "Define.hpp"
 
 CmdUser::CmdUser()
 {
@@ -15,9 +14,9 @@ CmdUser::~CmdUser()
 void CmdUser::cmdRun()
 {
     if (_args.size() < 5)
-        throw "461 * USER: Not enough parameters\r\n";
-    // else if (_server->checkExistClient(_args[1]) && _server->getClient(_args[1])->getRegistered())
-    //     throw CmdUser::ClientWithThisNickRegistered();
+        throw ERR_NEEDMOREPARAMS(_args[0]);
+    if (_client->getRegistered())
+        throw ERR_ALREADYREGISTRED;
     else
     {
         _client->setNick(_args[1]);

@@ -30,6 +30,7 @@ class Command
 		void			setArgs(std::vector<std::string> args);
 		void			setServer(Server *server);
 		virtual void	cmdRun() = 0;
+		std::string		createMsg();
 
 		class InvalidNumOfArgs : public std::exception
 		{

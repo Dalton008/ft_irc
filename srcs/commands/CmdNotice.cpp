@@ -1,4 +1,5 @@
 #include "CmdNotice.hpp"
+#include "Define.hpp"
 
 CmdNotice::CmdNotice()
 {
@@ -13,38 +14,30 @@ CmdNotice::~CmdNotice()
 void CmdNotice::cmdRun()
 {
     if (!_client->getRegistered())
-        throw CmdNotice::ERR_RESTRICTED();
+        throw ERR_RESTRICTED;
+    else if (_args.size() == 1)
+        throw ERR_NOTEXTTOSEND;
+    else if (_args[1] == _args[2])
+        throw ERR_TOOMANYTARGETS(_args[1]);
     else
     {
-        std::string msg = createMsg();
+        string msg = createMsg();
         if (_args[1][0] == '#' || _args[1][0] == '&')
         {
             Client *toClient = _server->getClient(_args[1]);
             Channel *toChannel = _server->getChannel(_args[1]);
             if (!toChannel)
-                throw CmdNotice::ChannelDoesNotExist();
-            std::string toClientStr = toClient->getNick();
-            toChannel->sendMessageToChannel(":" + toClientStr + " NOTICE #" + toChannel->getChannelName() + msg + "\r\n");
+                throw ERR_NOSUCHCHANNEL(_args[2]);
+            string toClientStr = toClient->getNick();
+            toChannel->sendMessageToChannel(":" + _client->getNick() + " NOTICE #" + toChannel->getChannelName() + " : " + msg + "\r\n");
         }
         else
         {
             Client *toClient = _server->getClient(_args[1]);
             if (!toClient)
-                throw CmdNotice::NickOrChannelNameError();
-            std::string toClientStr = toClient->getNick(); 
-            toClient->sendMessageToClient(":" + toClientStr + " NOTICE " + toClientStr + msg + "\r\n");
+                throw ERR_NOSUCHNICK(_args[1]);
+            string toClientStr = toClient->getNick(); 
+            toClient->sendMessageToClient(":" + _client->getNick() + " NOTICE " + toClientStr + " " + msg + "\r\n");
         }
     }
-}
-
-std::string CmdNotice::createMsg()
-{
-    std::string msg = _client->getNick() + ": ";
-    for (size_t i = 2; i < _args.size(); i++)
-    {
-        msg = msg + _args[i];
-        if (i + 1 != _args.size())
-            msg += " ";
-    }
-    return msg;
 }

@@ -1,4 +1,5 @@
 #include "CmdPart.hpp"
+#include "Define.hpp"
 
 CmdPart::CmdPart()
 {
@@ -13,16 +14,16 @@ CmdPart::~CmdPart()
 void CmdPart::cmdRun()
 {
     if (!_client->getRegistered())
-        throw CmdPart::ERR_RESTRICTED();
+        throw ERR_RESTRICTED;
     else if (_args.size() < 2)
-        throw "461 * PART: Not enough parameters\r\n";
+        throw ERR_NEEDMOREPARAMS(_args[0]);
     else
     {
         Channel *channel = _server->getChannel(_args[1]);
         if (!channel)
-            throw "403 * #" + _args[1] + ":No such channel\r\n";
+            throw ERR_NOSUCHCHANNEL(_args[1]);
         if (!channel->getClient(_client->getNick()))
-            throw "442 * " + _args[1] + ":You're not on that channel\r\n";
+            throw ERR_NOTONCHANNEL(_args[1]);
         channel->removeClient(_client->getNick());
         channel->sendMessageToChannel(
             ":" + _client->getNick() +

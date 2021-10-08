@@ -1,49 +1,61 @@
 #ifndef DEFINE_HPP
 #define DEFINE_HPP
 
-#define ERR_NOSUCHNICK(nickname)				"401 * " + nickname + ":No such nick/channel";
-#define ERR_NOSUCHSERVER(servername)			"402 * " + servername + ":No such server";
-#define ERR_NOSUCHCHANNEL(channelname)			"403 * #" + channelname + ":No such channel";
-#define ERR_CANNOTSENDTOCHAN(channelname)		"404 * #" + channelname + ":Cannot send to channel";
-#define ERR_TOOMANYCHANNELS(channelname)		"405 * #" + channelname + ":You have joined too many channels";
-#define ERR_WASNOSUCHNICK(nickname)				"406 * " + nickname + ":There was no such nickname";
-#define ERR_TOOMANYTARGETS(target)				"407 * " + target + ":Duplicate recipients. No message delivered";
-#define ERR_NOORIGIN							"409 * :No origin specified";
-#define ERR_NORECIPIENT(command)				"411 * :No recipient given " + command;
-#define ERR_NOTEXTTOSEND						"412 * :No text to send";
-#define ERR_NOTOPLEVEL(mask)					"413 * " + mask + " :No toplevel domain specified";
-#define ERR_WILDTOPLEVEL(mask)					"414 * " + mask + " :Wildcard in toplevel domain";
-#define ERR_UNKNOWNCOMMAND(command)				"421 * " + command + " :Unknown command";
-#define ERR_NOMOTD								"422 * :MOTD File is missing";
-#define ERR_NOADMININFO(server)					"423 * " + server + " :No administrative info available";
-#define ERR_FILEERROR(fileop, file)				"424 * :File error doing " + fileop + " on " + file;
-#define	ERR_NONICKNAMEGIVEN						"431 * :No nickname given";
-#define ERR_ERRONEUSNICKNAME(nickname)			"432 * " + nickname + " :Erroneus nickname";
-#define	ERR_NICKNAMEINUSE(nickname)				"433 * " + nickname + " :Nickname is already in use";
-#define ERR_NICKCOLLISION(nickname)				"436 * " + nickname + " :Nickname collision KILL";
-#define ERR_USERNOTINCHANNEL(nickname, channel)	"441 * " + nickname + " #" + channel + " :They aren't on that channel";
-#define ERR_NOTONCHANNEL(channel)				"442 * #" + channel + " :You're not on that channel";
-#define ERR_USERONCHANNEL(nickname, channel)	"443 * " + nickname + " #" + channel + " :is already on channel";
-#define ERR_NOLOGIN(nickname)					"444 * " + nickname + " :User not logged in";
-#define ERR_SUMMONDISABLED						"445 * :SUMMON has been disabled";
-#define ERR_USERSDISABLED						"446 * :USERS has been disabled";
-#define ERR_NOTREGISTERED						"451 * :You have not registered";
-#define ERR_NEEDMOREPARAMS(command)				"461 * " + command + " :Not enough parameters";
-#define ERR_ALREADYREGISTRED					"462 * :You may not reregister";
-#define ERR_NOPERMFORHOST						"463 * :Your host isn't among the privileged";
-#define ERR_PASSWDMISMATCH						"464 * :Password incorrect";
-#define ERR_YOUREBANNEDCREEP					"465 * :You are banned from this server";
-#define ERR_KEYSET(channel)						"467 * #" + channel + " :Channel key already set";
-#define ERR_CHANNELISFULL(channel)				"471 * #" + channel + " :Cannot join channel (+l)";
-#define ERR_UNKNOWNMODE(char)					"472 * " + char + " :is unknown mode char to me";
-#define ERR_INVITEONLYCHAN(channel)				"473 * #" + channel + " :Cannot join channel (+i)";
-#define ERR_BANNEDFROMCHAN(channel)				"474 * #" + channel + " :Cannot join channel (+b)";
-#define ERR_BADCHANNELKEY(channel)				"475 * #" + channel + " :Cannot join channel (+k)";
-#define ERR_NOPRIVILEGES						"481 * :Permission Denied- You're not an IRC operator";
-#define ERR_CHANOPRIVSNEEDED(channel)			"482 * #" + channel + " :You're not channel operator";
-#define ERR_CANTKILLSERVER						"483 * :You cant kill a server!";
-#define ERR_NOOPERHOST							"491 * :No O-lines for your host";
-#define ERR_UMODEUNKNOWNFLAG					"501 * :Unknown MODE flag";
-#define ERR_USERSDONTMATCH						"502 * :Cant change mode for other users";
+using namespace std;
+
+#define ERR_NOSUCHNICK(nickname)				"401 * " + nickname + " :No such nick/channel\r\n"
+#define ERR_NOSUCHSERVER(servername)			"402 * " + servername + " :No such server\r\n"
+#define ERR_NOSUCHCHANNEL(channelname)			"403 * #" + channelname + " :No such channel\r\n"
+#define ERR_CANNOTSENDTOCHAN(channelname)		"404 * #" + channelname + " :Cannot send to channel\r\n"
+#define ERR_TOOMANYCHANNELS(channelname)		"405 * #" + channelname + " :You have joined too many channels\r\n"
+#define ERR_WASNOSUCHNICK(nickname)				"406 * " + nickname + " :There was no such nickname\r\n"
+#define ERR_TOOMANYTARGETS(target)				"407 * " + target + " :Duplicate recipients. No message delivered\r\n"
+#define ERR_NOORIGIN							"409 * :No origin specified\r\n"
+#define ERR_NORECIPIENT(command)				"411 * :No recipient given " + command + "\r\n"
+#define ERR_NOTEXTTOSEND						"412 * :No text to send\r\n"
+#define ERR_NOTOPLEVEL(mask)					"413 * " + mask + " :No toplevel domain specified\r\n"
+#define ERR_WILDTOPLEVEL(mask)					"414 * " + mask + " :Wildcard in toplevel domain\r\n"
+#define ERR_UNKNOWNCOMMAND(command)				"421 * " + command + " :Unknown command\r\n"
+#define ERR_NOMOTD								"422 * :MOTD File is missing\r\n"
+#define ERR_NOADMININFO(server)					"423 * " + server + " :No administrative info available\r\n"
+#define ERR_FILEERROR(fileop, file)				"424 * :File error doing " + fileop + " on " + file + "\r\n"
+#define ERR_NONICKNAMEGIVEN						"431 * :No nickname given\r\n"
+#define ERR_ERRONEUSNICKNAME(nickname)			"432 * " + nickname + " :Erroneus nickname\r\n"
+#define ERR_NICKNAMEINUSE(nickname)				"433 * " + nickname + " :Nickname is already in use\r\n"
+#define ERR_NICKCOLLISION(nickname)				"436 * " + nickname + " :Nickname collision KILL\r\n"
+#define ERR_USERNOTINCHANNEL(nickname, channel)	"441 * " + nickname + " #" + channel + " :They aren't on that channel\r\n"
+#define ERR_NOTONCHANNEL(channel)				"442 * #" + channel + " :You're not on that channel\r\n"
+#define ERR_USERONCHANNEL(nickname, channel)	"443 * " + nickname + " #" + channel + " :is already on channel\r\n"
+#define ERR_NOLOGIN(nickname)					"444 * " + nickname + " :User not logged in\r\n"
+#define ERR_SUMMONDISABLED						"445 * :SUMMON has been disabled\r\n"
+#define ERR_USERSDISABLED						"446 * :USERS has been disabled\r\n"
+#define ERR_NOTREGISTERED						"451 * :You have not registered\r\n"
+#define ERR_NEEDMOREPARAMS(command)				"461 * " + command + " :Not enough parameters\r\n"
+#define ERR_ALREADYREGISTRED					"462 * :You may not reregister\r\n"
+#define ERR_NOPERMFORHOST						"463 * :Your host isn't among the privileged\r\n"
+#define ERR_PASSWDMISMATCH						"464 * :Password incorrect\r\n"
+#define ERR_YOUREBANNEDCREEP					"465 * :You are banned from this server\r\n"
+#define ERR_KEYSET(channel)						"467 * #" + channel + " :Channel key already set\r\n"
+#define ERR_CHANNELISFULL(channel)				"471 * #" + channel + " :Cannot join channel (+l)\r\n"
+#define ERR_UNKNOWNMODE(char)					"472 * " + char + " :is unknown mode char to me\r\n"
+#define ERR_INVITEONLYCHAN(channel)				"473 * #" + channel + " :Cannot join channel (+i)\r\n"
+#define ERR_BANNEDFROMCHAN(channel)				"474 * #" + channel + " :Cannot join channel (+b)\r\n"
+#define ERR_BADCHANNELKEY(channel)				"475 * #" + channel + " :Cannot join channel (+k)\r\n"
+#define	ERR_BADCHANMASK(channel)				"476 * #" + channel + " :Bad Channel Mask\r\n"
+#define ERR_NOPRIVILEGES						"481 * :Permission Denied- You're not an IRC operator\r\n"
+#define ERR_CHANOPRIVSNEEDED(channel)			"482 * #" + channel + " :You're not channel operator\r\n"
+#define ERR_CANTKILLSERVER						"483 * :You cant kill a server!\r\n"
+#define	ERR_RESTRICTED							"484 * :Your connection is restricted!\r\n"
+#define ERR_NOOPERHOST							"491 * :No O-lines for your host\r\n"
+#define ERR_UMODEUNKNOWNFLAG					"501 * :Unknown MODE flag\r\n"
+#define ERR_USERSDONTMATCH						"502 * :Cant change mode for other users\r\n"
+
+#define	RPL_AWAY(nickname, message)				"301 * " + nickname + " :" + message + "\r\n"
+#define RPL_UNAWAY                              "305 * :You are no longer marked as being away\r\n"
+#define RPL_NOWAWAY								"306 * :You have been marked as being away\r\n"
+#define	RPL_LIST(channel, countusers)			"322 * #" + channel + " " + countusers + "\r\n"
+#define RPL_LISTEND								"323 * :End of LIST\r\n"
+#define	RPL_NOTOPIC(channel)					"332 * #" + channel + " :No topic is set"
+#define	RPL_TIME(timestr)						"391 * " + timestr + "\r\n"
 
 #endif

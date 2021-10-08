@@ -1,8 +1,6 @@
 #include "CmdHelp.hpp"
-
+#include "Define.hpp"
 //made for nc in terminal
-
-using namespace std;
 
 CmdHelp::CmdHelp(vector<Command*> &cmds) : cmds(cmds)
 {

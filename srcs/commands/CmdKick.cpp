@@ -1,4 +1,5 @@
 #include "CmdKick.hpp"
+#include "Define.hpp"
 
 CmdKick::CmdKick()
 {
@@ -13,22 +14,22 @@ CmdKick::~CmdKick()
 void CmdKick::cmdRun()
 {
     if (!_client->getRegistered())
-        throw CmdKick::ERR_RESTRICTED();
-    else if (_args.size() <  2)
-        throw "461 * KICK: Not enough parameters\r\n";
+        throw ERR_RESTRICTED;
+    else if (_args.size() < 2)
+        throw ERR_NEEDMOREPARAMS(_args[0]);
     else
     {
         Channel *toChannel = _server->getChannel(_args[1]);
         if (!toChannel)
-            throw "403 * #" + _args[1] + ":No such channel\r\n";
+            throw ERR_NOSUCHCHANNEL(_args[1]);
         if (!_client->getIsOperator())
-            throw "482 * #" + _args[1] + ":You're not channel operator\r\n";
+            throw ERR_CHANOPRIVSNEEDED(_args[1]);
         if (toChannel->getClient(_client->getNick()))
-            throw "442 * " + _args[1] + ":You're not on that channel\r\n";
+            throw ERR_NOTONCHANNEL(_args[1]);
         
         Client *toClient = _server->getClient(_args[2]);
         if (!toClient)
-            throw "441 * " + _args[2] + " #" + _args[1] + ":They aren't on that channel\r\n";
+            throw ERR_USERNOTINCHANNEL(_args[2], _args[1]);
         toChannel->sendMessageToChannel(
             ":" + toClient->getNick() + " " + "KICK #" + toChannel->getChannelName() + " : kicked " + toClient->getNick() + "\r\n"
         );

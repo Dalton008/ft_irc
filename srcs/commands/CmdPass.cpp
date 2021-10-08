@@ -1,6 +1,5 @@
 #include "CmdPass.hpp"
-
-using namespace std;
+#include "Define.hpp"
 
 CmdPass::CmdPass()
 {
@@ -14,12 +13,10 @@ CmdPass::~CmdPass()
 
 void CmdPass::cmdRun()
 {
-	if (_client->getEnterPassword())
-		throw "462 * :Unauthorized command (already registered)\r\n";
 	if (_args.size() < 2)
-		throw "461 * PASS: Not enough parameters\r\n";
-	if (!_server->checkClientPass(_args[1]))
-		throw CmdPass::IncorrectPasswordException();
+		throw ERR_NEEDMOREPARAMS(_args[0]);
+	if (_client->getEnterPassword())
+		throw ERR_ALREADYREGISTRED;
 	else
 	{
 		_client->setEnterPassword(true);
@@ -27,9 +24,4 @@ void CmdPass::cmdRun()
 		_client->sendMessageToClient(":" + nick + " PASS Correct password\r\n");
 		_client->registered();
 	}
-}
-
-const char *CmdPass::IncorrectPasswordException::what() const throw()
-{
-	return "464 * :Password incorrect\r\n";
 }
