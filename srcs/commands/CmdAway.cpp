@@ -19,8 +19,8 @@ void CmdAway::cmdRun()
     {
         if (_args.size() > 2)
         {
-            string awayMessage = createMsg();
-            _client->setAwayMessage(_args[1]);
+            string awayMessage = createAway();
+            _client->setAwayMessage(awayMessage);
             _client->sendMessageToClient(RPL_NOWAWAY);
         }
         else
@@ -34,3 +34,14 @@ void CmdAway::cmdRun()
     }
 }
 
+string  CmdAway::createAway()
+{
+    string away = "";
+    for (size_t i = 1; i < _args.size(); i++)
+    {
+        away = away + _args[i];
+        if (i + 1 != _args.size())
+            away += " ";
+    }
+    return away;
+}

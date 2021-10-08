@@ -17,7 +17,7 @@ class Channel
 		Client					*getClient(std::string clientName);
 		bool					checkExistClient(std::string clientName);
 		void					setClient(Client *client);
-		void					sendMessageToChannel(std::string message);
+		void					sendMessageToChannel(std::string message, std::string nickname);
 		void					removeClient(std::string clientName);
 };
 

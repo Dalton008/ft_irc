@@ -27,7 +27,7 @@ void CmdPrivmsg::cmdRun()
         Channel *toChannel = _server->getChannel(_args[1]);
         if (toChannel != nullptr)
         {
-            toChannel->sendMessageToChannel(":" + _client->getNick() + " PRIVMSG " + toChannel->getChannelName() + " : " + msg);
+            toChannel->sendMessageToChannel(":" + _client->getNick() + " PRIVMSG " + toChannel->getChannelName() + " : " + msg, _client->getNick());
         }
         else
         {

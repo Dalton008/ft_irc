@@ -22,14 +22,10 @@ void CmdNotice::cmdRun()
     else
     {
         string msg = createMsg();
-        if (_args[1][0] == '#' || _args[1][0] == '&')
+        Channel *toChannel = _server->getChannel(_args[1]);
+        if (toChannel != nullptr)
         {
-            Client *toClient = _server->getClient(_args[1]);
-            Channel *toChannel = _server->getChannel(_args[1]);
-            if (!toChannel)
-                throw ERR_NOSUCHCHANNEL(_args[2]);
-            string toClientStr = toClient->getNick();
-            toChannel->sendMessageToChannel(":" + _client->getNick() + " NOTICE #" + toChannel->getChannelName() + " : " + msg + "\r\n");
+            toChannel->sendMessageToChannel(":" + _client->getNick() + " NOTICE #" + toChannel->getChannelName() + " : " + msg, _client->getNick());
         }
         else
         {

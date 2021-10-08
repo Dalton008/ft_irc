@@ -174,7 +174,7 @@ void	Server::deleteClient(string id){
 	{
 		if ((*itC)->getId() == id)
 		{
-            delete (*itC);
+			close((*itC)->getSockFd());
             _clients.erase(itC);
             break ;
 		}

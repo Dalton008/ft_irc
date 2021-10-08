@@ -24,7 +24,6 @@ void CmdJoin::cmdRun()
         Channel *channel = _server->getChannel(_args[1]);
         if (!channel)
         {
-            _args[1].erase(_args[1].begin());
             _server->createChannel(_args[1]);
             channel = _server->getChannel(_args[1]);
             _client->setIsOperator(true);
@@ -35,7 +34,8 @@ void CmdJoin::cmdRun()
         channel->setClient(_client);
         channel->sendMessageToChannel(
             ":" + _client->getNick() + " JOIN #" + 
-            channel->getChannelName() + "\r\n"
+            channel->getChannelName() + "\r\n",
+            _client->getNick()
         );
     }
 }

@@ -9,6 +9,7 @@ class CmdAway : public Command
         CmdAway();
         ~CmdAway();
         void cmdRun();
+        std::string createAway(); 
 };
 
 #endif

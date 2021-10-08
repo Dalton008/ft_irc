@@ -9,6 +9,7 @@ class CmdWho : public Command
         CmdWho();
         ~CmdWho();
         void cmdRun();
+        Client* getOperator(std::vector<Client*> clients);
 };
 
 #endif

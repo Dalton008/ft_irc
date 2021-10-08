@@ -28,7 +28,8 @@ void CmdPart::cmdRun()
         channel->sendMessageToChannel(
             ":" + _client->getNick() +
             " " + "PART" + " #" +
-            channel->getChannelName()
+            channel->getChannelName(),
+            _client->getNick()
         );
     }
 }

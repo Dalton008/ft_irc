@@ -21,7 +21,6 @@ void CmdList::cmdRun()
         for (std::vector<Channel*>::const_iterator i = channel.begin(); i != channel.end(); i++)
         {
             _client->sendMessageToClient(RPL_LIST((*i)->getChannelName(), to_string((*i)->getClients().size())));
-            // _client->sendMessageToClient("322 * #" + (*i)->getChannelName() + " " + std::to_string((*i)->getClients().size()) + "\r\n");
         }
         _client->sendMessageToClient(RPL_LISTEND);
     }

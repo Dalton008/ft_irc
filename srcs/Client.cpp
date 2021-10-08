@@ -7,7 +7,6 @@ Client::Client(int sockFd, int port, Server *serv, char *host) : _sockFd(sockFd)
 	_realname = "";
 	_isOperator = false;
 	_awayMessage = "";
-	// _channel = nullptr;
 	_enterPassword = false;
 	_registered = false;
 	_id = serv->getId(0) + serv->getId(1) + serv->getId(2);

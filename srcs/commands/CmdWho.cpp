@@ -22,12 +22,19 @@ void CmdWho::cmdRun()
         Channel *toChannel = _server->getChannel(_args[1]);
         if (!toChannel)
             throw ERR_NOSUCHCHANNEL(_args[1]);
-        std::vector<Client*> clients = toChannel->getClients();
-        _client->sendMessageToClient("Channel " + toChannel->getChannelName() + " has " + std::to_string(clients.size()) + " users\r\n");
-        for (std::vector<Client*>::const_iterator i = clients.begin(); i != clients.end(); i++)
-        {
-            if ((*i)->getIsOperator())
-                _client->sendMessageToClient("@" + (*i)->getNick() + "\r\n");
-        }
+        vector<Client*> clients = toChannel->getClients();
+        // _client->sendMessageToClient("Channel " + toChannel->getChannelName() + " has " + to_string(clients.size()) + " users\r\n");
+        _client->sendMessageToClient(RPL_WHOREPLY(toChannel->getChannelName(), to_string(clients.size()), getOperator(clients)->getNick()));
+        _client->sendMessageToClient(RPL_ENDOFWHO);
     }
+}
+
+Client* CmdWho::getOperator(vector<Client*> clients)
+{
+    for (vector<Client*>::const_iterator i = clients.begin(); i != clients.end(); i++)
+    {
+        if ((*i)->getIsOperator())
+            return (*i);
+    }
+    return nullptr;
 }
