@@ -122,11 +122,7 @@ void Server::start(void){
 				{
 					vector<Client *>::iterator	itClient = _clients.begin();
 					advance(itClient, distance(_pollfds.begin(), itPollfd) - 1);
-					ssize_t byteRecv = recvMessage(*itClient); //del byteRecv ? 
-					
-					(void)byteRecv;
-					
-					// cout << (*itClient)->getMessage() << endl;
+					recvMessage(*itClient);
 					_Commander->parse((*itClient), (*itClient)->getMessage());
 				}
 			}
