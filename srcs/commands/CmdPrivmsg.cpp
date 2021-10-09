@@ -39,7 +39,6 @@ void CmdPrivmsg::cmdRun()
             if (toClient->getAwayMessage().size() != 0)
             {
                 throw RPL_AWAY(toClient->getNick(), toClient->getAwayMessage());
-                // _client->sendMessageToClient(":" + toClient->getNick() + " PRIVMSG " + _client->getNick() + ": " + toClient->getAwayMessage() + "\r\n");
             }
         }
     }

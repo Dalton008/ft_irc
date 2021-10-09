@@ -25,7 +25,7 @@ void CmdNotice::cmdRun()
         Channel *toChannel = _server->getChannel(_args[1]);
         if (toChannel != nullptr)
         {
-            toChannel->sendMessageToChannel(":" + _client->getNick() + " NOTICE #" + toChannel->getChannelName() + " : " + msg, _client->getNick());
+            toChannel->sendMessageToChannel(":" + _client->getNick() + " NOTICE " + toChannel->getChannelName() + " " + msg, _client->getNick());
         }
         else
         {

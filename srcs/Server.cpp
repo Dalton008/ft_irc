@@ -106,8 +106,6 @@ void Server::start(void){
 
 				if (_clients.empty())
 					break;
-        	    cout << "disconnect not registered Client" << endl;
-        	    this->deleteClient((*itClient)->getId());
         	    break;
         	}
 
@@ -153,7 +151,8 @@ int		Server::recvMessage(Client *client){
 	return (byteRecved);
 }
 
-void	Server::deleteClient(string id){
+void	Server::deleteClient(string id)
+{
 	int socketClient = this->getIdClient(id)->getSockFd();
 	
 	vector<pollfd>::iterator	it = _pollfds.begin();
@@ -263,4 +262,9 @@ vector<Channel*> Server::getAllChannels()
 vector<Client*>	Server::getAllClients()
 {
 	return _clients;
+}
+
+string	Server::getPass()
+{
+	return _pass;
 }

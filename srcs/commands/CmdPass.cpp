@@ -17,6 +17,8 @@ void CmdPass::cmdRun()
 		throw ERR_NEEDMOREPARAMS(_args[0]);
 	if (_client->getEnterPassword())
 		throw ERR_ALREADYREGISTRED;
+	else if (_server->getPass() != _args[1])
+		throw ERR_PASSWDMISMATCH;
 	else
 	{
 		_client->setEnterPassword(true);

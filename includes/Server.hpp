@@ -53,6 +53,7 @@ public:
 		void					createChannel(std::string channelName);
 		bool					checkExistChannel(std::string channelName);
 		bool					checkExistClient(std::string clientNickname);
+		std::string				getPass();
 		Client					*getClient(std::string clientName);
 		Channel					*getChannel(std::string channelName);
 		std::vector<Channel*>	getAllChannels();
